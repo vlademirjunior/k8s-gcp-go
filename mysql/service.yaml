@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service
+spec:
+  ports:
+    - port: 3306
+  selector:
+    app: mysql-server
+    tier: db
+  clusterIP: None # Não quero que as pessoas acessam de fora do cluster e nem acessam através de IP interno, quero apenas que seja disponível por resolução de nomes "mysql-service" para ajudar com service discovery e segurança

@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-server
+spec: # Spec do deployment
+  replicas: 1
+  selector: # Porque quando for criar o Service desse Mysql fica tudo mais fácil utilizando selectors específicos.
+    matchLabels:
+      app: mysql-server
+      tier: db
+  template:
+    metadata: # Metadados que vamos usar nos PODs
+      labels:
+        app: mysql-server # OBS.: Como estamos usando selectors, esse labels aqui não é mais utilizados nos Services.
+        tier: db # Criei Tier mas poderia ser joão se quiser, tier porque depois eu posso usar tier: backend e tier: frontend
+    spec: # Spec dos PODs
+      containers:
+      - image: mysql:5.7
+        name: mysql-server # Nome do meu container basicamente
+        args: # Para evitar problemas com o volume criado, em relação ao diretório lost+found que é gerado automaticamente quando cria  o volume.
+          - "--ignore-db-dir=lost+found"
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: password
+        ports:
+        - containerPort: 3306
+        volumeMounts: # Monta o volume efetivamente, volume aplicado no volume persistent_volumes.yaml
+        - name: mysql-persistent-storage # Volume definido abaixo
+          mountPath: /var/lib/mysql
+
+      volumes:
+      - name: mysql-persistent-storage
+        persistentVolumeClaim:
+          claimName: mysql-pv-claim # pego lá do arquivo persistent_volumes.yaml
+

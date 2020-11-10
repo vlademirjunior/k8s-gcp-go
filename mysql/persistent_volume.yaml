@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: PersistentVolumeClaim # Esse tipo de objeto "solicita" ao kubernetes para liberar espaço para dados persistentes.
+metadata:
+  name: mysql-pv-claim
+spec:
+  accessModes: # Onde eu digo se vou ler/gravar
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 20Gi # Tamanho de disco que vou solicitar para o kubernetes liberar na minha máquina para trabalhar com volumes persistentes.

@@ -12,7 +12,7 @@ func main() {
 }
 
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, greeting("Code.education Rocks!") )
+	fmt.Fprintf(w, greeting("Code.education Rocks!"))
 }
 
 func greeting(message string) string {

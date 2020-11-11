@@ -1,7 +1,7 @@
-# k8s-gcp-go
+# DESAFIO UTILIZANDO K8S
 
 # Endereço da imagem no Docker Hub
-- (Clique aqui)[https://hub.docker.com/r/vlademirdocker/k8s-gcp-go]
+- [Clique aqui](https://hub.docker.com/r/vlademirdocker/k8s-gcp-go)
 
 
 # Alguns comandos executados:

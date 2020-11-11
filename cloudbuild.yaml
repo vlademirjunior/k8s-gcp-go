@@ -1,0 +1,23 @@
+steps:
+  - id: "Versão do Go"
+    name: "gcr.io/cloud-builders/go"
+    args: [ "version" ]
+    env: [ "GOPATH=." ]
+
+  - id: "Detectando problemas de segurança de código-fonte..."
+    name: "securego/gosec"
+    args: [ "./go" ]
+    env: [ "GOPATH=." ]
+
+  - id: "Rodando Teste..."
+    name: "gcr.io/cloud-builders/go"
+    args: [ "test", "./go/src" ]
+    env: [ "GOPATH=." ]
+
+  - id: "Construindo a Imagem..."
+    name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "gcr.io/$PROJECT_ID/k8s-gcp-go:$SHORT_SHA", "-f", "./go/.docker/Dockerfile", "./go"]
+
+  - id: "Subindo a Imagem..."
+    name: "gcr.io/cloud-builders/docker"
+    args: [ "push", "gcr.io/$PROJECT_ID/k8s-gcp-go:$SHORT_SHA" ]

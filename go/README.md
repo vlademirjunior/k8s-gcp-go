@@ -1,4 +1,7 @@
-# Desafio de CI
+# Desafio
+- Usar uma função chamada "greeting" que recebe a string "Code.education Rocks!" como parametro.
+- Rodar na porta 8000
+- Exibir "Code.education Rocks!" (em negrito).
 
 ### Como rodar os testes:
 - Dentro do diretório `./src`

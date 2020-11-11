@@ -4,10 +4,6 @@ steps:
     args: [ "version" ]
     env: [ "GOPATH=." ]
 
-  - id: "Rodando Lint no código-fonte..."
-    name: "golangci/golangci-lint"
-    args: [ "golangci-lint","run" ]
-
   - id: "Detectando problemas de segurança de código-fonte..."
     name: "securego/gosec"
     args: [ "./go" ]

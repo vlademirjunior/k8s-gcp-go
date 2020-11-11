@@ -1,10 +1,18 @@
 # DESAFIO UTILIZANDO K8S
 
+# Endereço do serviço em produção
+- [Clique aqui](http://34.70.243.238/)
+
 # Endereço da imagem no Docker Hub
 - [Clique aqui](https://hub.docker.com/r/vlademirdocker/k8s-gcp-go)
 
 
 # Alguns comandos executados:
+- GCP
+```shell script
+$ gcloud container clusters get-credentials k8s-gcp-go-cluster --zone us-central1-c --project ci-golang-tdd
+```
+
 - Desafio Nginx
 ```shell script
 $ kubectl apply -f configmap.yaml
@@ -41,7 +49,6 @@ A exibição dessa string deve ser baseada no retorno de uma função chamada "g
 - Ative o processo de CI no Google Cloud Build para garantir que a cada PR criada faça com que os testes sejam executados.
 Gere a imagem desse aplicativo de forma otimizada e publique-a no Docker Hub
 Utilizando o Kubernetes, disponibilize o serviço do tipo Load Balancer que quando acessado pelo browser acesse a aplicação criada em Go.
-Entrega via Github:
 
 - Cria uma pasta para cada etapa dessa fase contendo os arquivos .yml do kubernetes
 No caso do Desafio Go, o fonte da aplicação, Dockerfile, etc também devem ficar disponíveis.
